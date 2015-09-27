@@ -85,9 +85,11 @@ Spectrum normalizeSpectrum(Spectrum data){
  * Calculate XYZ for each TCS.
  */
 
-void calculateXYZ(Spectrum &Data, double xyz[3][SIZE_TSC]){
+void calculateXYZ(Spectrum &Data){
     double tab[3][SIZE];
-    double xy[2][SIZE_TSC];
+    double x, y;
+    double uv[2][SIZE_TSC];
+    double xyz[3][SIZE_TSC];
     for(int i=0;i<SIZE_TSC;i++)
     {
         for (int k = 0; k<3;k++) {
@@ -99,9 +101,12 @@ void calculateXYZ(Spectrum &Data, double xyz[3][SIZE_TSC]){
 
             //TSC2[i].setData(tab);
         }
-        xy[0][i]=xyz[0][i]/(xyz[0][i]+xyz[1][i]+xyz[2][i]);
-        xy[1][i]=xyz[1][i]/(xyz[0][i]+xyz[1][i]+xyz[2][i]);
-        //cout<<xy[0][i]<<" "<<xy[1][i]<<endl;
+        x=xyz[0][i]/(xyz[0][i]+xyz[1][i]+xyz[2][i]);
+        y=xyz[1][i]/(xyz[0][i]+xyz[1][i]+xyz[2][i]);
+
+        uv[0][i]=4*x/(-2*x+12*y+3);
+        uv[1][i]=6*y/(-2*x+12*y+3);
+        cout<<uv[0][i]<<" "<<uv[1][i]<<endl;
 
     }
 
@@ -207,8 +212,7 @@ int main() {
     Spectrum Data = getData();
     Spectrum normalize = normalizeSpectrum(Data);
     Spectrum BlackBody;
-    double output1[3][SIZE_TSC];
-    calculateXYZ(normalize,output1);
+    calculateXYZ(normalize);
     double CCT = calculateCCT(normalize);
     if(CCT < 5000){
         BlackBody = CaluclateBlackBody(CCT);
@@ -219,10 +223,14 @@ int main() {
     BlackBody = normalizeSpectrum(BlackBody);
 
 
-    BlackBody.printData();
+   // BlackBody.printData();
     return 0;
 }
-//TODO:
-//skoñczy³em na edytowaniu funkcji calculatgeXYZ. Trzebe naprawiæ, ¿eby zwraca³o tablice XYZ[3][SIZE_TSC]
-//ogólnie powinnno to smigaæ
-//
+/*
+ * TODO:
+ * CalucateXYZ liczy uv.
+ * Obliczyc CRI
+ * REFRAKTORYZACJA!!!!
+ * zrobiÄ‡ GUI
+ * ZaimplementowaÄ‡ pobieranie danych.
+ */
