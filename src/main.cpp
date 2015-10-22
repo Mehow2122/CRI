@@ -24,7 +24,12 @@ void TSC_Init(){
             {0.074, 0.079, 0.086, 0.098, 0.111, 0.121, 0.127, 0.129, 0.127, 0.121, 0.116, 0.112, 0.108, 0.105, 0.104, 0.104, 0.105, 0.106, 0.11,  0.115, 0.123, 0.134, 0.148, 0.167, 0.192, 0.219, 0.252, 0.291, 0.325, 0.347, 0.356, 0.353, 0.346, 0.333, 0.314, 0.294, 0.271, 0.248, 0.227, 0.206, 0.188, 0.17,  0.153, 0.138, 0.125, 0.114, 0.106, 0.1,   0.096, 0.092, 0.09,  0.087, 0.085, 0.082, 0.08,  0.079, 0.078, 0.078, 0.078, 0.078, 0.081, 0.083, 0.088, 0.093, 0.102, 0.112, 0.125, 0.141, 0.161, 0.182, 0.203, 0.223, 0.242, 0.257, 0.27,  0.282, 0.292, 0.302, 0.31,  0.314, 0.317, 0.323, 0.33,  0.334, 0.338, 0.343, 0.348, 0.353, 0.359, 0.365, 0.372, 0.38,  0.388, 0.396, 0.403},
             {0.189, 0.175, 0.158, 0.139, 0.12,  0.103, 0.09,  0.082, 0.076, 0.068, 0.064, 0.065, 0.075, 0.093, 0.123, 0.16,  0.207, 0.256, 0.3,   0.331, 0.346, 0.347, 0.341, 0.328, 0.307, 0.282, 0.257, 0.23,  0.204, 0.178, 0.154, 0.129, 0.109, 0.09,  0.075, 0.062, 0.051, 0.041, 0.035, 0.029, 0.025, 0.022, 0.019, 0.017, 0.017, 0.017, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.016, 0.018, 0.018, 0.018, 0.018, 0.019, 0.02,  0.023, 0.024, 0.026, 0.03,  0.035, 0.043, 0.056, 0.074, 0.097, 0.128, 0.166, 0.21,  0.257, 0.305, 0.354, 0.401, 0.446, 0.485, 0.52,  0.551, 0.577, 0.599, 0.618, 0.633, 0.645, 0.656, 0.666, 0.674, 0.68,  0.686, 0.691, 0.694, 0.697, 0.7,   0.702},
             {0.071, 0.076, 0.082, 0.09,  0.104, 0.127, 0.161, 0.211, 0.264, 0.313, 0.341, 0.352, 0.359, 0.361, 0.364, 0.365, 0.367, 0.369, 0.372, 0.374, 0.376, 0.379, 0.384, 0.389, 0.397, 0.405, 0.416, 0.429, 0.443, 0.454, 0.461, 0.466, 0.469, 0.471, 0.474, 0.476, 0.483, 0.49,  0.506, 0.526, 0.553, 0.582, 0.618, 0.651, 0.68,  0.701, 0.717, 0.729, 0.736, 0.742, 0.745, 0.747, 0.748, 0.748, 0.748, 0.748, 0.748, 0.748, 0.748, 0.748, 0.747, 0.747, 0.747, 0.747, 0.747, 0.747, 0.747, 0.746, 0.746, 0.746, 0.745, 0.744, 0.743, 0.744, 0.745, 0.748, 0.75,  0.75,  0.749, 0.748, 0.748, 0.747, 0.747, 0.747, 0.747, 0.746, 0.746, 0.746, 0.746, 0.745, 0.745, 0.745, 0.745, 0.745, 0.745},
-            {0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.037, 0.038, 0.039, 0.039, 0.04,  0.041, 0.042, 0.042, 0.043, 0.044, 0.044, 0.045, 0.045, 0.046, 0.047, 0.048, 0.05,  0.052, 0.055, 0.057, 0.062, 0.067, 0.075, 0.083, 0.092, 0.1,   0.108, 0.121, 0.133, 0.142, 0.15,  0.154, 0.155, 0.152, 0.147, 0.14,  0.133, 0.125, 0.118, 0.112, 0.106, 0.101, 0.098, 0.095, 0.093, 0.09,  0.089, 0.087, 0.086, 0.085, 0.084, 0.084, 0.084, 0.084, 0.085, 0.087, 0.092, 0.096, 0.102, 0.11,  0.123, 0.137, 0.152, 0.169, 0.188, 0.207, 0.226, 0.243, 0.26,  0.277, 0.294, 0.31,  0.325, 0.339, 0.353, 0.366, 0.379, 0.39,  0.399, 0.408, 0.416, 0.422, 0.428, 0.434, 0.439, 0.444, 0.448, 0.451, 0.454}
+            {0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.037, 0.038, 0.039, 0.039, 0.04,  0.041, 0.042, 0.042, 0.043, 0.044, 0.044, 0.045, 0.045, 0.046, 0.047, 0.048, 0.05,  0.052, 0.055, 0.057, 0.062, 0.067, 0.075, 0.083, 0.092, 0.1,   0.108, 0.121, 0.133, 0.142, 0.15,  0.154, 0.155, 0.152, 0.147, 0.14,  0.133, 0.125, 0.118, 0.112, 0.106, 0.101, 0.098, 0.095, 0.093, 0.09,  0.089, 0.087, 0.086, 0.085, 0.084, 0.084, 0.084, 0.084, 0.085, 0.087, 0.092, 0.096, 0.102, 0.11,  0.123, 0.137, 0.152, 0.169, 0.188, 0.207, 0.226, 0.243, 0.26,  0.277, 0.294, 0.31,  0.325, 0.339, 0.353, 0.366, 0.379, 0.39,  0.399, 0.408, 0.416, 0.422, 0.428, 0.434, 0.439, 0.444, 0.448, 0.451, 0.454},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1    , 1, 1, 1, 1, 1, 1, 1,   1, 1, 1, 1, 1,  1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1    , 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,     1, 1,  1, 1, 1,  1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1    , 1, 1, 1, 1, 1, 1, 1,   1, 1, 1, 1, 1,  1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1    , 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,     1, 1,  1, 1, 1,  1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+
+
+
     };
     for(int i=0;i<SIZE_TSC;i++)
     {
@@ -77,18 +82,13 @@ Spectrum normalizeSpectrum(Spectrum data){
     for(int i = 0; i<SIZE; i++){
         dataValue[i] = (dataValue[i]/sum)*100;
     }
-    vector <double> tab[SIZE];
+    //vector <double> tab[SIZE];
     output.setData(&dataValue);
     return output;
 }
-/*
- * Calculate XYZ for each TCS.
- */
-
-void calculateXYZ(Spectrum &Data){
+void calculate_uv(Spectrum &Data, double (&uvY)[3][SIZE_TSC]){
     double tab[3][SIZE];
     double x, y;
-    double uv[2][SIZE_TSC];
     double xyz[3][SIZE_TSC];
     for(int i=0;i<SIZE_TSC;i++)
     {
@@ -99,17 +99,14 @@ void calculateXYZ(Spectrum &Data){
                 xyz[k][i]+=tab[k][j];
             }
 
-            //TSC2[i].setData(tab);
         }
         x=xyz[0][i]/(xyz[0][i]+xyz[1][i]+xyz[2][i]);
         y=xyz[1][i]/(xyz[0][i]+xyz[1][i]+xyz[2][i]);
 
-        uv[0][i]=4*x/(-2*x+12*y+3);
-        uv[1][i]=6*y/(-2*x+12*y+3);
-        cout<<uv[0][i]<<" "<<uv[1][i]<<endl;
-
+        uvY[0][i]=4*x/(-2*x+12*y+3);
+        uvY[1][i]=6*y/(-2*x+12*y+3);
+        uvY[2][i]=xyz[1][i];
     }
-
 }
 double calculateCCT(Spectrum &normalizeData){
     double CCT;
@@ -182,7 +179,7 @@ Spectrum CalculateBlackBody2(double CCT){
 
     M1 = (-1.3515- 1.7703*xD + 5.9114*yD )/ (0.0241 + 0.2562*xD - 0.7341*yD);
     M2 = (0.0300 - 31.44243*xD + 30.0717*yD) / (0.0241 + 0.2562*xD - 0.7341*yD );
-    cout<<"CCT: "<<CCT<<" xD = "<<xD<< " yD = "<<yD<<" M1 = "<<M1<<" M2 = "<<M2;
+   // cout<<"CCT: "<<CCT<<" xD = "<<xD<< " yD = "<<yD<<" M1 = "<<M1<<" M2 = "<<M2;
     vector <double> tab[SIZE];
     for (int i=0;i<SIZE;i++){
         tab->push_back(s[0][i]+s[1][i]*M1+s[2][i]*M2);
@@ -204,15 +201,67 @@ Spectrum CalculateBlackBody2(double CCT){
      */
 
 }
+void ChromaticyAdaptation(double uvY[3][SIZE_TSC], double Uk, double Vk, double Ur, double Vr, double (&uvk)[3][SIZE_TSC]) {
+    double ck = (4-Uk-10*Vk)/Vk;
+    double dk = (1.708*Vk+0.404-1.481*Uk)/Vk;
+    double cr = (4-Ur-10*Vr)/Vr;
+    double dr = (1.708*Vr+0.404-1.481*Ur)/Vr;
+    double cdr[2][SIZE_TSC];
+    for(int i=0;i<SIZE_TSC;i++)
+    {
+        cdr[0][i]=(4- uvY[0][i]-10* uvY[1][i])/ uvY[1][i];
+        cdr[1][i]=(1.708* uvY[1][i]+0.404-1.481* uvY[0][i])/ uvY[1][i];
 
+    }
+    for(int i=0;i<SIZE_TSC;i++)
+    {
+        uvk[0][i]=(10.872+0.404*cr/ck*cdr[0][i]-4*dr/dk*cdr[1][i])/(16.518+1.481*cr/ck*cdr[0][i]-dr/dk*cdr[1][i]);
+        uvk[1][i]=5.52/(16.518+1.481*cr/ck*cdr[0][i]-dr/dk*cdr[1][i]);
+        uvk[2][i]=uvY[2][i];
+    }
+
+
+}
+void calculateR_table(double input_uvk[3][SIZE_TSC], double reference_uvY[3][SIZE_TSC], double (&R)[SIZE_TSC])
+{
+    double W[2][SIZE_TSC];
+    double U[2][SIZE_TSC];
+    double V[2][SIZE_TSC];
+    double deltaE[SIZE_TSC];
+    for(int i=0;i<SIZE_TSC;i++)
+    {
+        W[0][i]=25*pow(input_uvk[2][i],(double)1/3)-17;
+        W[1][i]=25*pow(reference_uvY[2][i],(double)1/3)-17;
+        U[0][i]=13*W[0][i]*(input_uvk[0][i]- input_uvk[0][SIZE_TSC-1]);
+        U[1][i]=13*W[1][i]*(reference_uvY[0][i]-reference_uvY[0][SIZE_TSC-1]);
+        V[0][i]=13*W[0][i]*(input_uvk[1][i]- input_uvk[1][SIZE_TSC-1]);
+        V[1][i]=13*W[1][i]*(reference_uvY[1][i]-reference_uvY[1][SIZE_TSC-1]);
+        deltaE[i]=sqrt(pow((W[0][i]-W[1][i]),2)+pow((U[0][i]-U[1][i]),2)+pow((V[0][i]-V[1][i]),2));
+        R[i]=100-4.6*deltaE[i];
+
+    }
+
+}
+void calculateCRI(double R[SIZE_TSC])
+{
+    double CRI = 0;
+    for(int i=0;i<8;i++)
+    {
+        CRI+=R[i];
+    }
+    CRI/=7.0; //7 czy 8?
+    cout<<CRI;
+}
 int main() {
     TSC_Init();
     setWavelength();
     xyz_bar_Init();
+    double input_uvY[3][SIZE_TSC];
+    double reference_uvY[3][SIZE_TSC];
     Spectrum Data = getData();
     Spectrum normalize = normalizeSpectrum(Data);
     Spectrum BlackBody;
-    calculateXYZ(normalize);
+    calculate_uv(normalize,input_uvY);
     double CCT = calculateCCT(normalize);
     if(CCT < 5000){
         BlackBody = CaluclateBlackBody(CCT);
@@ -221,15 +270,19 @@ int main() {
         BlackBody = CalculateBlackBody2(CCT);
     }
     BlackBody = normalizeSpectrum(BlackBody);
-
+    cout<<endl;
+    calculate_uv(BlackBody,reference_uvY);
+    double input_uvk[3][SIZE_TSC];
+    double R[SIZE_TSC];
+    ChromaticyAdaptation(input_uvY,input_uvY[0][SIZE_TSC-1],input_uvY[1][SIZE_TSC-1],reference_uvY[0][SIZE_TSC-1],reference_uvY[1][SIZE_TSC-1],input_uvk);
+    calculateR_table(input_uvk, reference_uvY, R);
+    calculateCRI(R);
 
    // BlackBody.printData();
     return 0;
 }
 /*
  * TODO:
- * CalucateXYZ liczy uv.
- * Obliczyc CRI
  * REFRAKTORYZACJA!!!!
  * zrobić GUI
  * Zaimplementować pobieranie danych.
