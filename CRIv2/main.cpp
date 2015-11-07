@@ -1,0 +1,11 @@
+#include "cri.h"
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    CRI w;
+    w.show();
+
+    return a.exec();
+}

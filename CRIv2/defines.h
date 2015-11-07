@@ -4,6 +4,6 @@
 
 #ifndef CPP1_DEFINES_H
 #define CPP1_DEFINES_H
-#define SIZE 95
+#define SIZE 71 //95
 #define SIZE_TSC 16
 #endif //CPP1_DEFINES_H
