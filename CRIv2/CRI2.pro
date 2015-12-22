@@ -21,4 +21,4 @@ HEADERS  += cri.h \
     Spectrum.h
 
 FORMS    += cri.ui
-CONFIG += c++11
+QMAKE_CXXFLAGS += -std=c++11

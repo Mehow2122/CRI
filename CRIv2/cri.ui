@@ -7,31 +7,34 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>361</height>
    </rect>
   </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
   <property name="windowTitle">
-   <string>CRI</string>
+   <string>Color Rendering Index Calculator</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>110</y>
+      <y>130</y>
       <width>129</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Go!</string>
+     <string>Start</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Exit_Button">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>200</y>
+      <x>300</x>
+      <y>270</y>
       <width>85</width>
       <height>27</height>
      </rect>
@@ -44,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>140</y>
+      <y>20</y>
       <width>131</width>
       <height>27</height>
      </rect>
@@ -57,7 +60,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>40</y>
+      <y>60</y>
       <width>271</width>
       <height>44</height>
      </rect>
@@ -76,23 +79,55 @@
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>400</width>
-     <height>27</height>
-    </rect>
-   </property>
+   <widget class="QSplitter" name="splitter_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>170</y>
+      <width>135</width>
+      <height>44</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <widget class="QPushButton" name="Serial_Button">
+     <property name="text">
+      <string>Serial</string>
+     </property>
+    </widget>
+    <widget class="QSplitter" name="splitter_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Timeout</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox">
+      <property name="minimum">
+       <number>5</number>
+      </property>
+      <property name="maximum">
+       <number>60</number>
+      </property>
+      <property name="singleStep">
+       <number>1</number>
+      </property>
+      <property name="displayIntegerBase">
+       <number>10</number>
+      </property>
+     </widget>
+    </widget>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

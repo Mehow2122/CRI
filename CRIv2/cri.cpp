@@ -11,12 +11,22 @@
 #include <cstdlib>
 #include <fstream>
 #include <tgmath.h>
+#include <QTimer>
+
+#define COUNT 20
 #define SIZE_SP 113
 using namespace std;
 static Spectrum TSC[SIZE_TSC];
 static Spectrum xyz_bar[3];
 static Spectrum Wavelength;
-void TSC_Init(){
+double input_uvY[3][SIZE_TSC];
+double reference_uvY[3][SIZE_TSC];
+double CRITable[COUNT];
+double CCTTable[COUNT];
+int counter=0;
+QString pathToFile;
+int timerTime = 0;
+void TscInit(){
     /*
      * Create table with value of TSC (TCS?) Wavelength - 360 to 830 with step 5
      *                                                    380-730
@@ -49,7 +59,7 @@ void TSC_Init(){
 
 
 }
-void xyz_bar_Init(){
+void xyzBarInit(){
     double tab[3][SIZE] = {
             { /*0.0001,0.0002,0.0004,0.0007,*/0.0014,0.0022,0.0042,0.0077,0.0143,0.0232,0.0435,0.0776,0.1344,0.2148,0.2839,0.3285,0.3483,0.3481,0.3362,0.3187,0.2908,0.2511,0.1954,0.1421,0.0956,0.0580,0.0320,0.0147,0.0049,0.0024,0.0093,0.0291,0.0633,0.1096,0.1655,0.2258,0.2904,0.3597,0.4335,0.5121,0.5945,0.6784,0.7621,0.8425,0.9163,0.9786,1.0263,1.0567,1.0622,1.0456,1.0026,0.9384,0.8545,0.7514,0.6424,0.5419,0.4479,0.3608,0.2835,0.2187,0.1649,0.1212,0.0874,0.0636,0.0468,0.0329,0.0227,0.0158,0.0114,0.0081,0.0058,0.0041,0.0029,0.0020,0.0014},//,0.0010,0.0007,0.0005,0.0003,0.0002,0.0002,0.0002,0.0001,0.0001,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000},
             { /*0.0000,0.0000,0.0000,0.0000,*/0.0000,0.0001,0.0001,0.0002,0.0004,0.0006,0.0012,0.0022,0.0040,0.0073,0.0116,0.0168,0.0230,0.0298,0.0380,0.0480,0.0600,0.0739,0.0910,0.1126,0.1390,0.1693,0.2080,0.2586,0.3230,0.4073,0.5030,0.6082,0.7100,0.7932,0.8620,0.9149,0.9540,0.9803,0.9950,1.0000,0.9950,0.9786,0.9520,0.9154,0.8700,0.8163,0.7570,0.6949,0.6310,0.5668,0.5030,0.4412,0.3810,0.3210,0.2650,0.2170,0.1750,0.1380,0.1070,0.0816,0.0610,0.0446,0.0320,0.0232,0.0170,0.0119,0.0082,0.0057,0.0041,0.0029,0.0021,0.0015,0.0010,0.0007,0.0005},//,0.0004,0.0002,0.0002,0.0001,0.0001,0.0001,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000},
@@ -163,15 +173,15 @@ void calculate_uv(Spectrum &Data, double (&uvY)[3][SIZE_TSC]){
 }
 double calculateCCT(Spectrum &normalizeData){
     double CCT;
-    double X=0,Y=0,Z=0,u=0,v=0;
+    double X=0,Y=0,Z=0;//,u,v;
     for(int i=0;i<SIZE;i++)
     {
         X+=normalizeData.getData()[i]*xyz_bar[0].getData()[i];
         Y+=normalizeData.getData()[i]*xyz_bar[1].getData()[i];
         Z+=normalizeData.getData()[i]*xyz_bar[2].getData()[i];
     }
-    u = 4*X/(X+15*Y+3*Z);
-    v = 6*X/(X+15*Y+3*Z);
+//    u = 4*X/(X+15*Y+3*Z);
+//    v = 6*X/(X+15*Y+3*Z);
     double x = X/(X+Y+Z);
     double y = Y/(X+Y+Z);
     double xe = 0.3320;
@@ -183,7 +193,7 @@ double calculateCCT(Spectrum &normalizeData){
     //CCT(x, y) = ?449n3 + 3525n2 ? 6823.3n + 5520.33,
     // n = (x ? xe)/(y ? ye) is the inverse slope line, and (xe = 0.3320, ye = 0.1858) is the "epicenter"
 }
-Spectrum CaluclateBlackBody(double &CCT){
+Spectrum caluclateBlackBodyPlancktian(double &CCT){
 
 /*
  * h = 6.62607E-34
@@ -212,7 +222,7 @@ Spectrum CaluclateBlackBody(double &CCT){
      * 2hc^2/(lambda^5 * e^(hc/lambda*kBT)-1)
     */
 }
-Spectrum CalculateBlackBody2(double &CCT){
+Spectrum calculateBlackBodyDaylight(double &CCT){
     double xD, yD, M1, M2;
     Spectrum BlackBody;
     double s[3][SIZE]=
@@ -254,7 +264,7 @@ Spectrum CalculateBlackBody2(double &CCT){
      */
 
 }
-void ChromaticyAdaptation(double uvY[3][SIZE_TSC], double Uk, double Vk, double Ur, double Vr, double (&uvk)[3][SIZE_TSC]) {
+void chromaticyAdaptation(double uvY[3][SIZE_TSC], double Uk, double Vk, double Ur, double Vr, double (&uvk)[3][SIZE_TSC]) {
     double ck = (4-Uk-10*Vk)/Vk;
     double dk = (1.708*Vk+0.404-1.481*Uk)/Vk;
     double cr = (4-Ur-10*Vr)/Vr;
@@ -276,7 +286,7 @@ void ChromaticyAdaptation(double uvY[3][SIZE_TSC], double Uk, double Vk, double 
 
 }
 
-void calculateR_table(double input_uvk[3][SIZE_TSC], double reference_uvY[3][SIZE_TSC], double (&R)[SIZE_TSC])
+void calculateRTable(double input_uvk[3][SIZE_TSC], double reference_uvY[3][SIZE_TSC], double (&R)[SIZE_TSC])
 {
     double W[2][SIZE_TSC];
     double U[2][SIZE_TSC];
@@ -312,9 +322,9 @@ CRI::CRI(QWidget *parent) :
     ui(new Ui::CRI)
 {
     ui->setupUi(this);
-    TSC_Init();
+    TscInit();
     setWavelength();
-    xyz_bar_Init();
+    xyzBarInit();
 
 
 }
@@ -324,33 +334,59 @@ CRI::~CRI()
     delete ui;
 }
 
+void CRI::serialData(){
+
+    Spectrum Data = getData(pathToFile);
+    Spectrum normalize = normalizeSpectrum(Data);
+    Spectrum BlackBody;
+    calculate_uv(normalize,input_uvY);
+    double CCT = calculateCCT(normalize);
+    if(CCT < 5000){
+        BlackBody = caluclateBlackBodyPlancktian(CCT);
+    }
+    else{
+        BlackBody = calculateBlackBodyDaylight(CCT);
+    }
+    BlackBody = normalizeSpectrum(BlackBody);
+    calculate_uv(BlackBody,reference_uvY);
+    double input_uvk[3][SIZE_TSC];
+    double R[SIZE_TSC];
+    chromaticyAdaptation(input_uvY,input_uvY[0][SIZE_TSC-1],input_uvY[1][SIZE_TSC-1],reference_uvY[0][SIZE_TSC-1],reference_uvY[1][SIZE_TSC-1],input_uvk);
+    calculateRTable(input_uvk, reference_uvY, R);
+    CRITable[counter] = calculateCRI(R);
+    CCTTable[counter] = CCT;
+    counter++;
+
+
+
+}
+
 void CRI::on_pushButton_clicked()
 {
-        QString pathToFile = ui->lineEdit->text();
-        double input_uvY[3][SIZE_TSC];
-        double reference_uvY[3][SIZE_TSC];
+        pathToFile = ui->lineEdit->text();
+
         Spectrum Data = getData(pathToFile);
         Spectrum normalize = normalizeSpectrum(Data);
         Spectrum BlackBody;
         calculate_uv(normalize,input_uvY);
         double CCT = calculateCCT(normalize);
         if(CCT < 5000){
-            BlackBody = CaluclateBlackBody(CCT);
+            BlackBody = caluclateBlackBodyPlancktian(CCT);
         }
         else{
-            BlackBody = CalculateBlackBody2(CCT);
+            BlackBody = calculateBlackBodyDaylight(CCT);
         }
         BlackBody = normalizeSpectrum(BlackBody);
         calculate_uv(BlackBody,reference_uvY);
         double input_uvk[3][SIZE_TSC];
         double R[SIZE_TSC];
-        ChromaticyAdaptation(input_uvY,input_uvY[0][SIZE_TSC-1],input_uvY[1][SIZE_TSC-1],reference_uvY[0][SIZE_TSC-1],reference_uvY[1][SIZE_TSC-1],input_uvk);
-        calculateR_table(input_uvk, reference_uvY, R);
+        chromaticyAdaptation(input_uvY,input_uvY[0][SIZE_TSC-1],input_uvY[1][SIZE_TSC-1],reference_uvY[0][SIZE_TSC-1],reference_uvY[1][SIZE_TSC-1],input_uvk);
+        calculateRTable(input_uvk, reference_uvY, R);
         double CRI = calculateCRI(R);
 
 
-        QMessageBox::information(this,"Tittle","CCT: "+QString::number(CCT)+
-                    "\nR1: " + QString::number(R[0])+
+        QMessageBox::information(this,"Measure:","CCT: "+QString::number(CCT)+
+                    "\n\nR1: " + QString::number(R[0])+
                     "\nR2: " + QString::number(R[1])+
                     "\nR3: " + QString::number(R[2])+
                     "\nR4: " + QString::number(R[3])+
@@ -364,9 +400,7 @@ void CRI::on_pushButton_clicked()
                     "\nR12: " + QString::number(R[11])+
                     "\nR13: " + QString::number(R[12])+
                     "\nR14: " + QString::number(R[13])+
-                    "\nR15: " + QString::number(R[14])+
-                    "\nR16: " + QString::number(R[15])+
-                    "\nCRI: "+QString::number(CRI));
+                    "\n\nCRI: "+QString::number(CRI));
 
 }
 
@@ -378,11 +412,64 @@ void CRI::on_Exit_Button_clicked()
 void CRI::on_Calibrate_button_clicked()
 {
     QString a = ui->lineEdit->text();
-    string b= "exec " + a.toStdString()+"/bin/spotread -O";
+    string b= "exec " + a.toStdString()+"/bin/spotread -e -N -H -O -s data.sp";
 
     const char *c = b.c_str();//string c = b.toStdString();
     //char c[] = "ls";
     system(c);
+
+    //In future I will use popen to eliminate errors
+/*
+    FILE *lsofFile_p = popen(c,"r");
+        char buffer[10024];
+        string out;
+        string dwa="retry:\n";
+        while(fgets(buffer, sizeof(buffer), lsofFile_p)!=NULL){
+            out+=buffer;
+        }
+    if(!out.substr(out.length()-6,out.length()).compare("retry:"))
+        QMessageBox::information(this,"Error",QString::number(out.length()));
+*/
     //QString Test = QString::fromStdString(asdf);
     //QMessageBox::information(this,"title",QString::number(asdf));
+}
+
+void test(){
+
+            qDebug()<<timerTime;
+}
+void zeroTable(){
+
+    for(int i=0;i<COUNT;i++)
+       {
+        CRITable[i]=0;
+        CCTTable[i]=0;
+        }
+}
+void CRI::printCRITable(){
+    QMessageBox msgBox;
+    QString outputText = "";
+    for(int i=0;i<COUNT;i++){
+        outputText+="Measurement "+QString::number(i+1)+":  "+QString::number(CRITable[i])+" CCT: "+QString::number(CCTTable[i]) + "\n";
+
+    }
+    msgBox.setText(outputText);
+    msgBox.exec();
+
+}
+
+void CRI::on_Serial_Button_clicked()
+{
+     pathToFile = ui->lineEdit->text();
+     QString textTime = ui->spinBox->text();
+     timerTime = textTime.toInt();
+     //time = time2;
+    zeroTable();
+    counter=0;
+     for(int i=0;i<COUNT;i++)
+     {
+        QTimer::singleShot((timerTime*1000*i), this, SLOT(serialData()));
+
+     }
+     QTimer::singleShot((timerTime*1000*COUNT),this, SLOT(printCRITable()));
 }
